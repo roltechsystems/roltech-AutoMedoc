@@ -1,0 +1,2 @@
+composer install
+php -S 0.0.0.0:8070 -t public public/index.php

@@ -26,9 +26,7 @@ class Module
         $eventManager = $app->getEventManager();
 
         //$eventManager->attach($event::EVENT_DISPATCH, [$this, 'getAccessPrivileges']);
-    }
-
-     
+    } 
 
      
 }
