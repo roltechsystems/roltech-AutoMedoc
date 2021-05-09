@@ -29,4 +29,8 @@ class ArticleController   extends AbstractActionController
 		return $view->setTemplate('Index/add');
     }
 
+    public function saveAction(){
+        
+    }
+
 }
