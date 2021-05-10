@@ -33,4 +33,8 @@ class ArticleController   extends AbstractActionController
         
     }
 
+    public function infoArticleAction(){
+        
+    }
+
 }
