@@ -1,0 +1,124 @@
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: username
+ * Date: 05/01/2016
+ * Time: 15:26
+ */
+
+$_user=Zend_Auth::getInstance()->getIdentity();
+ 
+ $candidat = new Application_Model_DbTable_Candidats();
+ $profilePHOTO=$candidat->fetchRow("CIN='".$_user->user['cin']."'");
+ 
+ $ImageProfile=  $this->basePath()."/admin/dist/img/user2-160x160.jpg";
+ if($profilePHOTO && !empty($profilePHOTO->PHOTO)){ 
+
+    $configpathfile = new Zend_Config_Ini(APPLICATION_PATH ."/modules/admin/configs/uploadfile.ini");
+
+    $config = new Zend_Config_Ini(APPLICATION_PATH ."/modules/admin/configs/image.ini"); 
+
+    $ImageProfile=  $this->basePath()."/".$configpathfile->pathfiles.$_user->user['cin']."/".$config->small->path."/160x160". $profilePHOTO->PHOTO;
+ 
+	$ImageProfile.="?" . rand(200,36000);
+ 
+ } 
+$roleStr=[];
+ if(isset($_user->roles)){
+	foreach($_user->roles as $r => $txtr){
+		$roleStr[]=$txtr;
+	}
+	 
+ }
+           
+?>
+<div class="row">
+
+<div class="col-md-12">
+	<div class="box">
+		<div class="box-title">
+			<h3>Etape 1 : choisir votre image de profile</h3>
+		</div>
+		<div class="box-body">
+			 <div class="row">
+			 <div class="col-md-6">
+			<?php echo $this->form;?>
+			</div>
+				<div class="col-md-6">
+				<div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username"><?=$_user->user['nom']?> <?=$_user->user['prenom']?></h3>
+              <h5 class="widget-user-desc"><?=$_user->user['fonction']?></h5>
+			  <h5 class="widget-user-desc"><?=implode(", ",$roleStr)?></h5>
+			  
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="<?=$ImageProfile?>" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">Email</h5>
+                    <span class="description-text"><?=$_user->user['email']?></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">Téléphone</h5>
+                    <span class="description-text"><?=$_user->user['tel']?></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+				
+				</div>
+			</div>
+		</div> 
+	</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="col-md-6">
+	<div class="box">
+		<div class="box-title">
+			<h3>Etape 2 : Recadrer l'image de profile</h3>
+		</div>
+		<div class="box-body">
+			
+			<img style="hieght:60%;width:60%;" src="<?=$this->basePath()?>/resources/images/crophelp/cropetap1.PNG" alt="Crop image help"/>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-6">
+	<div class="box">
+		<div class="box-title">
+			<h3>Affichage</h3>
+		</div>
+		<div class="box-body">
+			
+			<img style="hieght:30%;width:30%;"src="<?=$this->basePath()?>/resources/images/crophelp/rescrop.PNG" alt="resultat image help"/>  
+			<img style="hieght:30%;width:30%;" src="<?=$this->basePath()?>/resources/images/crophelp/rescrop2.PNG" alt="resultat image help"/>
+		</div>
+	</div>
+</div>

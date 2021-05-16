@@ -1,0 +1,127 @@
+<?php
+
+$title =  $this->translate('Ressources'); # page title
+# meta keywords
+$this->headMeta()->appendName('keywords', 'Login,  Authenticate UVT');
+# meta description
+$this->headMeta()->appendName('description', 'Login pour inscription');
+# page title
+$this->headTitle($this->escapeHtml($title));
+
+
+#form
+$form = $this->form;
+$form->setAttribute('action', $this->url('ressources/actions-ressources-save',['id',$this->id]));  #oops
+$form->prepare();
+
+?>
+ 
+
+<script type="text/javascript">
+    $(document).ready(
+        function(){
+
+			AjaxFormAccessAjaxReload("new_ressource","message_ressource",'<?=$this->url('ressources')?>',[],'content_ajax',true);
+        }
+    );
+</script>
+
+ 
+<div class="card card-primary">
+	<div class="card-header">
+	<h3 class="card-title">Ajouter ressources</h3>
+	</div>
+	<div class="card-body"> 
+		<button class="btn btn-flat btn-success"  type="button" onclick="AjaxOneLoader('<?=$this->url('ressources')?>','content_ajax')">Liste des ressources</button>
+	<br>
+	<div id="message_ressource"></div>
+	<?= $this->form()->openTag($form); ?> 
+ 
+
+
+       <!-- add the module input field -->
+        <div class="mb-3">
+            <?php $this->formLabel($form->get('module')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('module')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('module')); ?>  
+            </div>
+        </div>	
+
+         <!-- add the controller input field -->
+         <div class="mb-3">
+            <?php $this->formLabel($form->get('controller')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('controller')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('controller')); ?>  
+            </div>
+        </div>
+
+        <!-- add the action input field -->
+        <div class="mb-3">
+            <?php $this->formLabel($form->get('action')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('action')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('action')); ?>  
+            </div>
+        </div>
+
+
+
+ <!-- Annee universitaire select field -->
+ <div class="mb-3">
+            <?php $this->formLabel($form->get('idaccessmodules')); ?>
+        <div class="form-group">
+            <?= $this->formSelect($form->get('idaccessmodules')); ?>
+        </div>
+        
+        <div class="text-danger">
+            <?= $this->formElementErrors($form->get('idaccessmodules')); ?>
+        </div>
+    </div>
+
+
+     <!--   idaccessmode select field -->
+    <div class="mb-3">
+            <?php $this->formLabel($form->get('idaccessmode')); ?>
+        <div class="form-group">
+            <?= $this->formSelect($form->get('idaccessmode')); ?>
+        </div>
+        
+        <div class="text-danger">
+            <?= $this->formElementErrors($form->get('idaccessmode')); ?>
+        </div>
+    </div>
+     <!--   resources_descrept text field -->
+    <div class="mb-3">
+				<?= $this->formLabel($form->get('resources_descrept')); ?>
+				<div class="input-group">
+					<?= $this->formTextarea($form->get('resources_descrept')); ?>
+				</div>
+
+				<div class="text-danger">
+					<?= $this->formElementErrors($form->get('resources_descrept')); ?>
+				</div>
+
+			</div>
+	<!-- submit button -->
+	<div class="mb-3 float-right">
+    
+    <?= $this->formHidden($form->get('resource_id')); ?>
+		<?= $this->formHidden($form->get('csrf')); ?>
+		<div class="text-danger">
+			<?= $this->formElementErrors($form->get('csrf')); ?>
+		</div>
+		<?= $this->formSubmit($form->get('create_ressources')); ?>
+	</div>
+
+	<?= $this->form()->closeTag(); ?>
+  
+ </div>
+ </div>

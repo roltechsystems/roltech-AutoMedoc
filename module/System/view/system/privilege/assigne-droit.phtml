@@ -1,0 +1,41 @@
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Liste des ressources</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body"> 
+                <table class="table table-bordred">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th></th>
+                        <th>Module</th>
+                        <th>Controller</th>
+                        <th>Action</th>
+                        <th>Service</th>
+                        <th>Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->ListeRessources as $ressource):?>
+                            <tr>
+                            <td id="msg_<?=$ressource->getResourceid()?>"><?=$ressource->getResourceid()?></td>
+                            <td><input type="checkbox" onclick="AjaxLoaderMultiParam('<?=$this->url('droits/actions-assigne-update')?>',{'role':'<?=$this->role_id?>','ressource':<?=$ressource->getResourceid()?>,'check':$(this).is(':checked')},'msg_<?=$ressource->getResourceid()?>')" <?=isset($this->asseigned[$ressource->getResourceid()]) ?  "checked" : "" ?>></td>
+                            <td><?=$ressource->getModule()?></td>
+                            <td><?=$ressource->getController()?></td>
+                            <td><?=$ressource->getAction()?></td>
+                            <td><?=$ressource->getModulename()?></td>
+                            <td><?=$ressource->getLabelaccessmode()?></td>
+                            </tr>
+
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?= $this->paginationControl(
+                    $this->ListeRessources,
+                    'sliding',         
+                    'partial/paginator-assigne-droit-ajax',
+                    ['route' => 'droits/actions-assigne','role'=>$this->role_id,'module'=>$this->module_id]
+                );?>
+        </div>
+</div>

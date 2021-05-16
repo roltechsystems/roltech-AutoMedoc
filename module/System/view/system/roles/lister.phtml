@@ -1,0 +1,34 @@
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Liste des roles</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body"> 
+              <button class="btn btn-flat btn-success" type="button" onclick="AjaxOneLoader('<?=$this->url('roles/actions-role')?>','content_ajax')">Ajouter un role</button>
+
+                <table class="table table-bordred">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->ListeRole as $Role):?>
+                            <tr>
+                            <td id="role_<?=$Role->getRoleid()?>"><?=$Role->getRoleid()?></td>
+                            <td><?=$Role->getRolename()?></td> 
+                            <td><button type="button" onclick="deletedata('<?=$this->url('roles/actions-role-delete',['id'=>$Role->getRoleid()])?>','role_<?=$Role->getRoleid()?>','<?=$this->url('roles')?>','content_ajax')" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?= $this->paginationControl(
+                    $this->ListeRole,
+                    'sliding',         
+                    'partial/paginator-ajax',
+                    ['route' => 'roles']
+                );?>
+        </div>
+</div>

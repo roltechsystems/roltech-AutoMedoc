@@ -1,0 +1,84 @@
+<?php
+
+$title =  $this->translate('Ajout/Mise a jour de role'); # page title
+# meta keywords
+$this->headMeta()->appendName('keywords', 'Role, System');
+# meta description
+$this->headMeta()->appendName('description', 'Ajout/Mise a  jour des role');
+# page title
+$this->headTitle($this->escapeHtml($title));
+
+
+#form
+$form = $this->form;
+$form->setAttribute('action', $this->url('roles/actions-role-save',['id',$this->id]));  #Edition save
+$form->prepare();
+
+?>
+
+
+<script type="text/javascript">
+    $(document).ready(
+        function(){
+
+			AjaxFormAccessAjaxReload("new_Role","message_role",'<?=$this->url('roles')?>',[],'content_ajax',true);
+        }
+    );
+</script>
+</script>
+ <div class="card card-primary">
+	<div class="card-header">
+	<h3 class="card-title">Ajouter role</h3>
+	</div>
+	<div class="card-body"> 
+		<button class="btn btn-flat btn-success"  type="button" onclick="AjaxOneLoader('<?=$this->url('roles')?>','content_ajax')">Liste des roles</button>
+	<br>
+	<div id="message_role"></div>
+	<?= $this->form()->openTag($form); ?>  
+
+	<div class="mb-3">
+            <?php $this->formLabel($form->get('role_id')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('role_id')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('role_id')); ?>  
+            </div>
+        </div>	 
+       <!-- add the module input field -->
+        <div class="mb-3">
+            <?php $this->formLabel($form->get('role_name')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('role_name')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('role_name')); ?>  
+            </div>
+        </div>	 
+ 
+     <!--   resources_descrept text field -->
+    <div class="mb-3">
+				<?= $this->formLabel($form->get('role_descrept')); ?>
+				<div class="input-group">
+					<?= $this->formTextarea($form->get('role_descrept')); ?>
+				</div>
+
+				<div class="text-danger">
+					<?= $this->formElementErrors($form->get('role_descrept')); ?>
+				</div>
+
+			</div>
+	<!-- submit button -->
+	<div class="mb-3 float-right">
+        
+		<?= $this->formHidden($form->get('csrf')); ?>
+		<div class="text-danger">
+			<?= $this->formElementErrors($form->get('csrf')); ?>
+		</div>
+		<?= $this->formSubmit($form->get('create')); ?>
+	</div>
+
+	<?= $this->form()->closeTag(); ?>
+   
+ </div>
+ </div>

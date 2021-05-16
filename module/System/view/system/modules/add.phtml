@@ -1,0 +1,94 @@
+<?php
+
+$title =  $this->translate('Ajout/Mise a jour de role'); # page title
+# meta keywords
+$this->headMeta()->appendName('keywords', 'Role, System');
+# meta description
+$this->headMeta()->appendName('description', 'Ajout/Mise a  jour des role');
+# page title
+$this->headTitle($this->escapeHtml($title));
+
+
+#form
+$form = $this->form;
+$form->setAttribute('action', $this->url('roles/actions-role-save',['id',$this->id]));  #Edition save
+$form->prepare();
+
+?>
+
+
+<script type="text/javascript">
+    $(document).ready(
+        function(){
+
+//AjaxFormAccessAjaxReload();
+        }
+    );
+
+	// //access_module_id, moduleroute, module_name, module_descrept, module_afficher, templateattruibute
+
+</script>
+</script>
+ <div class="card card-primary">
+	<div class="card-header">
+	<h3 class="card-title">Ajouter module</h3>
+	</div>
+	<div class="card-body"> 
+		<button class="btn btn-flat btn-success"  type="button" onclick="AjaxOneLoader('<?=$this->url('roles')?>','content_ajax')">Liste des modules</button>
+	<br>
+	<?= $this->form()->openTag($form); ?>  
+
+	<div class="mb-3">
+            <?php $this->formLabel($form->get('module_name')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('module_name')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('module_name')); ?>  
+            </div>
+        </div>	 
+       <!-- add the module input field -->
+        <div class="mb-3">
+            <?php $this->formLabel($form->get('moduleroute')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('moduleroute')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('moduleroute')); ?>  
+            </div>
+        </div>
+
+		<!-- check box -->
+	<div class="mb-3">
+		<div class="custom-control custom-checkbox">
+			<?= $this->formCheckbox($form->get('module_afficher')); ?>
+			<?= $this->formLabel($form->get('module_afficher')); ?>
+		</div>
+	</div>	 
+ 
+     <!--   resources_descrept text field -->
+    <div class="mb-3">
+				<?= $this->formLabel($form->get('module_descrept')); ?>
+				<div class="input-group">
+					<?= $this->formTextarea($form->get('module_descrept')); ?>
+				</div>
+
+				<div class="text-danger">
+					<?= $this->formElementErrors($form->get('module_descrept')); ?>
+				</div>
+
+			</div>
+	<!-- submit button -->
+	<div class="mb-3 float-right">
+		<?= $this->formHidden($form->get('access_module_id')); ?>
+		<?= $this->formHidden($form->get('csrf')); ?>
+		<div class="text-danger">
+			<?= $this->formElementErrors($form->get('csrf')); ?>
+		</div>
+		<?= $this->formSubmit($form->get('create')); ?>
+	</div>
+
+	<?= $this->form()->closeTag(); ?>
+   
+ </div>
+ </div>

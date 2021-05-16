@@ -1,0 +1,163 @@
+<?php
+
+$title =  $this->translate('Ajout/Mise a jour de Menu'); # page title
+# meta keywords
+$this->headMeta()->appendName('keywords', 'Menu, System');
+# meta description
+$this->headMeta()->appendName('description', 'Ajout/Mise a  jour des Menu');
+# page title
+$this->headTitle($this->escapeHtml($title));
+
+
+#form
+$form = $this->form;
+if(isset($this->idsubmenu) && !empty($this->idsubmenu)){
+    $form->setAttribute('action', $this->url('menu/actions-menu-save',['module'=>$this->module_id,'idsubmenu'=>$this->idsubmenu]));  #Edition save
+
+}else{
+    $form->setAttribute('action', $this->url('menu/actions-menu-save',['module'=>$this->module_id,'id'=>$this->menu_id]));  #Edition save
+
+}
+$form->prepare();
+
+?>
+
+
+<script type="text/javascript">
+     $(document).ready(
+        function(){
+
+
+            $("select[name=idaccessmodule]").on("change",function(){
+                alert($(this).val());
+
+                $.ajax({
+                    type:"POST",
+                    url:page,
+                    data:{id:id },
+                    beforeSend :function(){
+                        $("select[name=idaccessmodule]").html("<option value=''>Encours...<option>");
+
+                    },
+                    success:function(response){
+                        $("select[name=idaccessmodule]").html(response);
+                    }
+                });
+
+            });
+			AjaxFormAccessAjaxReload("new_Menu","message_Menu",'<?=$this->url('menu')?>',[],'content_ajax',true);
+        }); 
+</script>
+</script>
+ <div class="card card-primary">
+	<div class="card-header">
+	<h3 class="card-title">Ajouter Menu</h3>
+	</div>
+	<div class="card-body"> 
+ 	 
+	<div id="message_Menu"></div>
+	<?= $this->form()->openTag($form); ?>  
+
+	<div class="mb-3">
+            <?php $this->formLabel($form->get('menu_label')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('menu_label')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('menu_label')); ?>  
+            </div>
+        </div>	 
+		<div class="mb-3">
+            <?php $this->formLabel($form->get('menuroute')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('menuroute')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('menuroute')); ?>  
+            </div>
+        </div>	 
+
+	<!-- Annee Module select field -->
+			<div class="mb-3">
+            <?php $this->formLabel($form->get('idaccessmodule')); ?>
+        <div class="form-group">
+            <?= $this->formSelect($form->get('idaccessmodule')); ?>
+        </div>
+        
+        <div class="text-danger">
+            <?= $this->formElementErrors($form->get('idaccessmodule')); ?>
+        </div>
+    </div>
+	<!-- Annee Ressource select field -->
+	<div class="mb-3">
+            <?php $this->formLabel($form->get('resource_id')); ?>
+        <div class="form-group">
+            <?= $this->formSelect($form->get('resource_id')); ?>
+        </div>
+        
+        <div class="text-danger">
+            <?= $this->formElementErrors($form->get('resource_id')); ?>
+        </div>
+    </div>
+<!-- Annee Sous menu select field -->
+<div class="mb-3">
+            <?php $this->formLabel($form->get('submenuid')); ?>
+        <div class="form-group">
+            <?= $this->formSelect($form->get('submenuid')); ?>
+        </div>
+        
+        <div class="text-danger">
+            <?= $this->formElementErrors($form->get('submenuid')); ?>
+        </div>
+    </div>
+
+       <!-- add the module input field -->
+        <div class="mb-3">
+            <?php $this->formLabel($form->get('ordreaffichage')); ?>
+            <div class="form-group">
+                <?= $this->formNumber($form->get('ordreaffichage')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('ordreaffichage')); ?>  
+            </div>
+        </div>	 
+
+     <!-- add the module input field -->
+     <div class="mb-3">
+            <?php $this->formLabel($form->get('icone_class')); ?>
+            <div class="form-group">
+                <?= $this->formText($form->get('icone_class')); ?> 
+            </div> 
+            <div class="text-danger"> 
+                    <?= $this->formElementErrors($form->get('icone_class')); ?>  
+            </div>
+        </div>	 
+
+        
+ 
+     <!--   resources_descrept text field -->
+    <div class="mb-3">
+				<?= $this->formLabel($form->get('menu_help')); ?>
+				<div class="input-group">
+					<?= $this->formTextarea($form->get('menu_help')); ?>
+				</div>
+
+				<div class="text-danger">
+					<?= $this->formElementErrors($form->get('menu_help')); ?>
+				</div>
+
+			</div>
+	<!-- submit button -->
+	<div class="mb-3 float-right">
+        
+		<?= $this->formHidden($form->get('csrf')); ?>
+		<div class="text-danger">
+			<?= $this->formElementErrors($form->get('csrf')); ?>
+		</div>
+		<?= $this->formSubmit($form->get('create')); ?>
+	</div>
+
+	<?= $this->form()->closeTag(); ?>
+   
+ </div>
+ </div>

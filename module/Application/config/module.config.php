@@ -27,6 +27,18 @@ return [
                     ],
                 ],
             ],
+            'help' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/help[/:action]',
+                    'constraints' => [
+                        'action' => '(contact|privacy|terms)',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\HelpController::class,
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
