@@ -1,0 +1,49 @@
+<?php
+
+$title =  $this->translate('Authentification'); # page title
+# meta keywords
+$this->headMeta()->appendName('keywords', 'Login,  Authenticate UVT');
+# meta description
+$this->headMeta()->appendName('description', 'Login pour inscription');
+# page title
+$this->headTitle($this->escapeHtml($title));
+ 
+
+?>
+ <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Gestion des droits de role <?=$this->role?></h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body"> 
+		 
+ <table class="table table-bordred">
+ 
+    <?php foreach($this->ListeModules as $Module):?>
+        <tr>
+            <td>
+                <?=$Module['module_name']?> 
+            </td>
+            <td>
+                <?php foreach($this->ListeMode as $KeyMode => $Mode):?>
+
+                    <div class="form-group">
+                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" class="custom-control-input" id="custom_<?=$Module['access_module_id']?>_<?=$KeyMode?>"  onclick="AjaxLoaderMultiParam('<?=$this->url('droits/actions-assigne-module')?>',{'role':'<?=$this->role?>','module':'<?=$Module['access_module_id']?>','mode':'<?=$KeyMode?>','check':$(this).is(':checked')},'msg_<?=$Module['access_module_id']?>_<?=$KeyMode?>')" <?=isset($this->asseigned[$Module['access_module_id'].'_'.$KeyMode]) ?  "checked" : "" ?>>
+                            <label class="custom-control-label" for="custom_<?=$Module['access_module_id']?>_<?=$KeyMode?>"><?=$Mode?> <small id="msg_<?=$Module['access_module_id']?>_<?=$KeyMode?>"></small></label>
+                        </div>
+                    </div> 
+                   
+                <?php endforeach;?>
+                
+                
+            </td>
+        </tr>
+   <?php endforeach;?>  
+
+
+   </table>  
+	<!-- submit button -->
+  
+    </div>
+    </div>

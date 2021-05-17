@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UVT Authentification administration</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+ 
+
+  <?php 
+  
+$this->headLink() ->prependStylesheet('/template/AdminLTE3/plugins/fontawesome-free/css/all.min.css');
+
+$this->headLink() ->prependStylesheet('/template/AdminLTE3/plugins/icheck-bootstrap/icheck-bootstrap.min.css');
+
+
+$this->headLink() ->prependStylesheet('/template/AdminLTE3/dist/css/adminlte.min.css');
+ echo $this->headLink();
+ 
+ ?>
+
+
+</head>
+<body class="hold-transition login-page" style="background-color:  #1b5891;">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+     
+		<a href="#"> <object data="<?=$this->basePath()?>/resources/images/logo-color.svg" type="image/svg+xml" style="width: 100%;height: 100%"></object></a>
+ 
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Connectez-vous pour démarrer votre session</p>
+
+
+        <?=$this->content?>
+
+
+
+      <div class="social-auth-links text-center mt-2 mb-3">
+        <a href="<?=$this->url('forgot')?>" class="btn btn-block btn-primary">
+          <i class="fab fa-key mr-2"></i> j'ai oublié mon mot de passe
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-user mr-2"></i> Enregistre en tant qu'administrateur
+        </a>
+      </div>
+      <!-- /.social-auth-links -->
+      
+      <!--p class="mb-0">
+        <a href="register.html" class="text-center">Register a new membership</a>
+      </p-->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+ 
+
+<?php
+
+$this->headScript()->appendFile('/template/AdminLTE3/plugins/jquery/jquery.min.js');
+
+$this->headScript()->appendFile('/template/AdminLTE3/plugins/bootstrap/js/bootstrap.bundle.min.js');
+
+$this->headScript()->appendFile('/template/AdminLTE3/dist/js/adminlte.min.js');
+
+echo $this->headScript();
+?>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Liste des roles</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body"> 
+              <button class="btn btn-flat btn-success" type="button" onclick="AjaxOneLoader('<?=$this->url('roles/actions-role')?>','content_ajax')">Ajouter un role</button>
+
+                <table class="table table-bordred">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->ListeRole as $Role):?>
+                            <tr>
+                            <td><?=$Role->getRoleid()?></td>
+                            <td><?=$Role->getRolename()?></td> 
+                            </tr>
+
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?= $this->paginationControl(
+                    $this->ListeRole,
+                    'sliding',         
+                    'partial/paginator-ajax',
+                    ['route' => 'roles']
+                );?>
+        </div>
+</div>

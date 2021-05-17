@@ -1,0 +1,41 @@
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Liste des droits</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body"> 
+                <table class="table table-bordred">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th>
+                        <th>Module</th>
+                        <th>Controller</th>
+                        <th>Action</th>
+                        <th>Service</th>
+                        <th>Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->ListeRessources as $ressource):?>
+                            <tr>
+                            <td><?=$ressource->getResourceid()?></td>
+                            <td><?=$ressource->getRolename()?></td>
+                            <td><?=$ressource->getModule()?></td>
+                            <td><?=$ressource->getController()?></td>
+                            <td><?=$ressource->getAction()?></td>
+                            <td><?=$ressource->getModulename()?></td>
+                            <td><?=$ressource->getLabelaccessmode()?></td>
+                            </tr>
+
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?= $this->paginationControl(
+                    $this->ListeRessources,
+                    'sliding',         
+                    'partial/paginator',
+                    ['route' => 'droits']
+                );?>
+        </div>
+</div>

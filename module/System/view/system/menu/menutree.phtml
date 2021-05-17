@@ -1,0 +1,76 @@
+
+<script type="text/javascript">  
+function treeconstractor(){
+	$("#tree").fancytree({
+	    source: {
+	            url: "<?=$this->url("menu/actions-menu-tree")?>"
+	    },
+	    lazyload: function(e, data){
+	 
+	            data.result = $.ajax({
+	                    url: "<?=$this->url("menu/actions-menu-tree")?>",
+	                    dataType: "json"
+	            });
+	    },
+	    click: function(event, data) {
+            
+                console.log(data.node.key+" "+data.node.tooltip);
+                var keydata=data.node.key;
+                var keysplit=keydata.split("_");  
+                	//save in session the key of formation choisie
+	    	    var url="<?=$this->url("menu")?> ";
+                if(keysplit[0]=="Menu"){
+                    url="<?=$this->url("menu/actions-menu-menu")?>/"+keysplit[2]+"/"+keysplit[1];/**filter module/menu**/
+                }else if(keysplit[0]=="Module"){
+                    url="<?=$this->url("menu/actions-menu-module")?>/"+keysplit[1];/**filter module**/
+                }  
+
+                
+
+                $.ajax({
+                    type:"POST",
+                    url: url,
+                    data:{
+                        nodeid:data.node.key 
+                    },
+                    beforeSend :function(){
+                        $('#content_ajax').html("Encours...");
+                    },
+                    success:function(response){
+                        $('#content_ajax').html(response);
+                    }
+                });
+             
+    	}
+	});
+
+	
+	}
+
+$(function(){ 
+	treeconstractor(); 
+	});  
+</script>
+<div class="row">
+    <div class="col-md-3" id="tree"></div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12"> 
+                    <nav class="navbar navbar-expand navbar-orange navbar-dark">
+                      <!-- Left navbar links -->
+                      <ul class="navbar-nav"> 
+                      <a class="nav-link"  href="#" role="button"><i class="fas fa-bars"></i></a>
+                        <li class="nav-item d-none d-sm-inline-block">
+                          <a href="#" onclick="AjaxOneLoader('<?=$this->url('menu/actions-menu-add')?>','content_ajax')" class="nav-link">Ajouter menu</a>
+                        </li> 
+                      </ul> 
+                    </nav> 
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col-md-12"  id="content_ajax"></div>
+        </div>
+
+    </div>
+</div> 

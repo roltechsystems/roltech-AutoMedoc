@@ -11,7 +11,29 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
-
+use Laminas\Db\Adapter;
 return [
-    // ...
+   'service_manager' => [
+        'abstract_factories' => [
+            Adapter\AdapterAbstractServiceFactory::class
+        ],
+        'factories' => [
+            Adapter\AdapterInterface::class => Adapter\AdapterServiceFactory::class,
+        ],
+        'aliases' => [
+            Adapter\Adapter::class => Adapter\AdapterInterface::class
+        ]
+    ],
+    'db' => [
+        'driver' => \pdo::class,
+        'dsn' => 'pgsql:host=localhost;port=5432;dbname=AutoMedoc;user=roltechsystems;password=roltechsystems',
+        'user' => 'roltechsystems',
+        'pass' => 'roltechsystems',
+        'driver_options' => [
+            1002 => 'SET NAMES \'UTF8\'',
+        ],
+        'adapters' => [
+            'roltechsystems' => [],
+        ],
+    ], 
 ];

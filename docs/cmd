@@ -1,0 +1,14 @@
+
+
+mot de pass : limostr123456
+login dev.roltechsystems@gmail.com
+
+
+composer dump-autoload
+composer require laminas/laminas-math
+composer require laminas/laminas-crypt
+composer require laminas/laminas-db
+composer require laminas/laminas-paginator
+composer require laminas/laminas-captcha
+composer require laminas/laminas-permissions-acl
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+   
+    <meta name="dcterms.created" content="15 5 2013 11:26:49 GMT">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title></title>
+    
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+	<?php $this->headLink() ->prependStylesheet($this->basePath().'/library/bootstrap5/dist/css/bootstrap.css'); ?>
+
+	<?php $this->headLink() ->prependStylesheet($this->basePath().'/library/bootstrap5/dist/css/bootstrap-responsive.min.css'); ?>
+
+	<?php $this->headLink() ->prependStylesheet($this->basePath().'/library/hyesuncss/style-add.css'); ?>
+ 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+	<?php  $this->headScript()->appendFile($this->basePath().'/internet/oss.maxcdn.com/respond/1.4.2/respond.min.js');?> 
+	<?php  $this->headScript()->appendFile($this->basePath().'/internet/oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js');?> 
+	<?php $this->headLink() ->prependStylesheet($this->basePath().'/internet/code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'); ?>
+	<?php $this->headLink() ->prependStylesheet($this->basePath().'/internet/maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'); ?>
+	<?php echo $this->headLink(); ?>
+	<?php echo $this->headScript();?>
+	<script>
+ 
+  </script>
+  </head>
+  
+  <body>
+  
+	<div class="header">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#"><span>
+					<object data="library/hyesuncss/images/logo.svg" type="image/svg+xml"></object>	
+				</span>
+				</a> 
+		  </div>
+		</div>
+	</div>
+
+	
+	
+	
+ <div class="container-xxl my-md-4 bd-layout" style="padding-bottom:2%;padding-top:2%;">
+	<div class="row"> 
+		
+		<div class="col-md-8" style="padding-bottom:2%;">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="titre2">Centre d’</br> <span style=" font-weight: bold; text-transform:uppercase;">Admission</span>
+					</div>
+					<div class="text-info2">L'objectif majeur de l'Université Virtuelle de Tunis est de proposer des programmes de formations en ligne de qualité utilisant des méthodes pédagogiques d'apprentissage adaptées aux nouvelles technologies et à l'enseignement en ligne.</div>
+				</div>
+			</div> 
+		</div>
+		
+		<div class="col-md-4"> 
+		   <div class="row">
+				<div class="col-md-6 col-sm-12 align-middle" style="background-color:#5e88a1;color:white;height:40px;">Connexion</div>
+				<div class="col-md-6 col-sm-12 align-middle" style="background-color:#b6b7bb;color:white;height:40px;">Inscription</div>
+		   </div>
+		   <div class="row">
+				<div class="col-md-12 col-sm-12" style="background-color:#e7e7e9;">
+
+				<?php echo $this->content; ?>
+
+				 </div>  
+						<!---End card registre²-->
+		   </div> 
+		   
+		 
+		</div>
+	</div>
+	
+	<div class="row" >
+		<div class="col-md-4 col-sm-12">
+			<div class="card">
+			  <h5 class="card-header" style="background-color:#7b5649;color:white;">Demande d'aide ou d'assistance</h5>
+			  <div class="card-body">
+				<h5 class="card-title">Assistance</h5>
+				<p class="card-text"> 
+					(*)Le helpdesk est une application d’assistance numérique elle est destinée à recueillir vos questions, remarques ou suggestions sur les principaux outils numériques et services mis à votre disposition par l’Université Virtuelle de Tunis.
+
+					Le helpdesk vous permet de déposer des demandes (qualifiées par des tickets) qui seront relayées auprès des gestionnaires concernés.
+
+					Vous serez ensuite automatiquement averti de l’état d’avancement de votre demande, depuis sa prise en charge jusqu’à sa résolution.
+						 
+				
+				</p>
+				<a href="/helpdesk" class="btn btn-primary">Allez aux Helpdesk</a>
+			  </div>
+			</div>
+		
+		</div>
+		
+		<div class="col-md-4 col-sm-12">
+					<div class="card">
+			  <h5 class="card-header" style="background-color:#648074;color:white;">Probléme probables</h5>
+			  <div class="card-body">
+				<h5 class="card-title">Les problémes qui peuvent étre servenu</h5>
+				<p class="card-text">
+					<i class="fa fa-address-card"></i> céer un compte <a href="<?=$this->url('signup')?>">cliquer ici</a>
+					
+					<br><i class="fa fa-key"></i> Réinitialiser votre mot de passe <a href="#">cliquer ici</a>
+					
+					<br><i class="fa fa-envelope"></i> Changer votre e-mail <a href="#">cliquer ici</a>
+					
+					<br><i class="fa fa-user-secret"></i> Vous avez oublier votre mot de passe <a href="#">cliquer ici</a>
+
+				</p>
+				<a href="#" class="btn btn-primary">Créer un compte</a>
+			  </div>
+			</div>
+	
+		</div>
+		
+		<div class="col-md-4 col-sm-12">
+			<div class="card">
+			  <h5 class="card-header" style="background-color:#7c7084;color:white;">Featured</h5>
+			  <div class="card-body">
+				<h5 class="card-title">Special title treatment</h5>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+			</div>
+	
+		</div>
+	
+	</div> 
+</div>	 
+</div>	 
+ 
+ <div class="footer">
+	<div class="container">
+	<div class="row position-relative bottom-0">
+		<div class="col-md-12 col-sm-12">
+			<p class="float-left position-absolute end-0" style="bottom:5%;font-size:13px;">  
+					13 Rue Ibn Nadim, 1073 Montplaisir, Tunis <br>
+					Tél : +216 71 90 52 48 / +216 71 90 52 69 / +216 71 90 52 54 <br>
+					Fax : +216 71 90 36 03 
+			</p> 
+			<object data="library/hyesuncss/images/footer.svg" type="image/svg+xml"></object>
+			<div class="ligne-bas"></div>
+	  </div>
+	  </div>
+	</div>
+  </div>
+ 
+	
+  </body>
+</html>

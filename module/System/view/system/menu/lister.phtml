@@ -1,0 +1,40 @@
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Menu de l'application</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">  
+                <table class="table table-bordred">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Module</th> 
+                        <th>Menu</th> 
+                        <th>Mode d'accé</th> 
+                        <th>Lien</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->ListeMenu as $Menu):?>
+                            <tr>
+                            <td id="Menu_<?=$Menu->getAccessmenuid()?>"><?=$Menu->getAccessmenuid()?></td>
+                            <td><?=$Menu->getModulename()?></td> 
+                            <td><?=$Menu->getMenulabel()?></td> 
+                            <td><?=$Menu->getLabelaccessmode()?></td> 
+                            <td><?=$Menu->getMenuroute()?></td> 
+                            <td><button type="button" onclick="deletedata('<?=$this->url('menu/actions-menu-delete',['id'=>$Menu->getAccessmenuid()])?>','Menu_<?=$Menu->getAccessmenuid()?>','<?=$this->url('menu/actions-menu-lister',['module'=>$this->module_id,'idsubmenu'=>$this->submenu_id])?>','content_ajax')" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?= $this->paginationControl(
+                    $this->ListeMenu,
+                    'sliding',         
+                    'partial/paginator-ajax',
+                    ['route' => 'menu/actions-menu-lister',
+                     'params'=>["module"=>$this->module_id,'idsubmenu'=>$this->submenu_id]
+                    ]
+                );?>
+        </div>
+</div>

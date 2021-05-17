@@ -1,0 +1,85 @@
+
+<script type="text/javascript">  
+function treeconstractor(){
+	$("#tree").fancytree({
+	    source: {
+	            url: "<?=$this->url("ressources/actions-ressources-tree")?>"
+	    },
+	    lazyload: function(e, data){
+	 
+	            data.result = $.ajax({
+	                    url: "<?=$this->url("ressources/actions-ressources-tree")?>",
+	                    dataType: "json"
+	            });
+	    },
+	    click: function(event, data) {
+            
+			console.log(data.node.key+" "+data.node.tooltip);
+			 var keydata=data.node.key;
+			var keysplit=keydata.split("_");   
+			//save in session the key of formation choisie
+	    	var url="<?=$this->url("ressources")?> ";
+                if(keysplit[0]=="Mode"){
+                    url="<?=$this->url("ressources/actions-ressources-filter")?>/"+keysplit[3]+"/"+keysplit[1];/**filter module/mode**/
+                }else if(keysplit[0]=="Module"){
+                    url="<?=$this->url("ressources/actions-ressources-filter")?>/"+keysplit[1];/**filter module**/
+                } else if(keysplit[0]=="Ressources"){
+                    url="<?=$this->url("ressources/actions-ressources")?>/"+keysplit[1]; /**modifier**/
+                } 
+
+                
+
+                $.ajax({
+                    type:"POST",
+                    url: url,
+                    data:{
+                        niveau:data.node.key
+                        ,anneescolaire:1
+                    },
+                    beforeSend :function(){
+                        $('#content_ajax').html("Encours...");
+                    },
+                    success:function(response){
+                        $('#content_ajax').html(response);
+                    }
+                });
+             
+    	}
+	});
+
+	
+	}
+
+$(function(){ 
+	treeconstractor(); 
+	});  
+</script>
+<div class="row">
+    <div class="col-md-3" id="tree"></div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12"> 
+                    <nav class="navbar navbar-expand navbar-orange navbar-dark">
+                      <!-- Left navbar links -->
+                      <ul class="navbar-nav"> 
+                      <a class="nav-link"  href="#" role="button"><i class="fas fa-bars"></i></a>
+                        <li class="nav-item d-none d-sm-inline-block">
+                          <a href="#" onclick="AjaxOneLoader('<?=$this->url('ressources/actions-ressources')?>','content_ajax')" class="nav-link">Ajouter ressource</a>
+                        </li>
+                        <li class="nav-item d-none d-sm-inline-block">
+                          <a href="#" onclick="AjaxOneLoader('<?=$this->url('ressources/actions-ressources')?>','content_ajax')" class="nav-link">Ajouter role</a>
+                        </li>
+                        <li class="nav-item d-none d-sm-inline-block">
+                          <a href="#" onclick="AjaxOneLoader('<?=$this->url('MesModules/actions-modules')?>','content_ajax')" class="nav-link">Ajouter module</a>
+                        </li>
+                      </ul> 
+                    </nav> 
+            </div>
+        </div>
+<hr>
+        <div class="row">
+            <div class="col-md-12"  id="content_ajax"></div>
+        </div>
+
+    </div>
+</div> 

@@ -1,0 +1,46 @@
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Liste des ressources</h3>
+                <button class="btn btn-flat btn-success" type="button" onclick="AjaxOneLoader('<?=$this->url('ressources/actions-ressources')?>','content_ajax')">Ajouter une ressource</button>
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body"> 
+                <table class="table table-bordred">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Module</th>
+                        <th>Controller</th>
+                        <th>Action</th>
+                        <th>Service</th>
+                        <th>Mode</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->ListeRessources as $ressource):?>
+                            <tr>
+                            <td id='ressources_<?=$ressource->getResourceid()?>'><?=$ressource->getResourceid()?></td>
+                            <td><?=$ressource->getModule()?></td>
+                            <td><?=$ressource->getController()?></td>
+                            <td><?=$ressource->getAction()?></td>
+                            <td><?=$ressource->getModulename()?></td>
+                            <td><?=$ressource->getLabelaccessmode()?></td>
+                            <td><button type="button" onclick="deletedata('<?=$this->url('ressources/actions-ressources-delete',['id'=>$ressource->getResourceid()])?>','ressources_<?=$ressource->getResourceid()?>','<?=$this->url('ressources')?>','content_ajax')" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+
+                            </tr>
+
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+                <?= $this->paginationControl(
+                    $this->ListeRessources,
+                    'sliding',         
+                    'partial/paginator-ajax',
+                    ['route' => 'ressources/actions-ressources-filter',
+                     'params'=>['mode'=>$this->mode,'module'=>$this->module]                    
+                    ]
+                );?>
+        </div>
+</div>

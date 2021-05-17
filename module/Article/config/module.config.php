@@ -35,13 +35,23 @@ return [
     				],
     			],
             ],
+            'info-Article'=>[
+                'type' => Literal::class,
+    			'options' => [
+    				'route' => '/info-page',
+    				'defaults' => [
+    					'controller' => Controller\ArticleController::class,
+    					'action' => 'info-article'
+    				],
+    			],
+            ],
         ],
     ],
-    #Metier
-    'controllers' => [
-    	'factories' => [
-            Controller\ArticleController::class => InvokableFactory::class,
-        ], 
+    #Metier 
+	'controllers' => [
+        'factories' => [
+            Controller\ArticleController::class => Controller\Factory\ArticleControllerFactory::class,
+        ],
     ],
     #Affichage
     'view_manager' => [

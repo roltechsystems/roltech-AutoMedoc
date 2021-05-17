@@ -1,0 +1,25 @@
+
+
+<div class="row">
+<?php foreach($this->ListeModules as $key => $Module):?>
+    <?php if($Module["afficher"] ):?>
+    <div class="col-md-4">
+
+         <div class="card card-primary">
+              <div class="card-header">
+                <h5 class="card-title m-0"><?=$key?></h5>
+              </div>
+              <div class="card-body">
+                 
+                <dl class="row"> 
+                    <dt class="col-sm-4"><i class="fas fa-book"></i></dt>
+                    <dd class="col-sm-8"><p class="card-text"><?=$Module['description']?></p></dd>
+                </dl>
+                
+                <a href="#" class="btn btn-primary">Accéder au module</a>
+              </div>
+            </div> 
+    </div>
+    <?php endif;?>
+<?php endforeach;?>
+</div>
